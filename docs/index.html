@@ -88,13 +88,195 @@
  
  
  
- 
- 
- 
- 
- <div class=swiper-wrapper style=transition-duration:0ms id=swiper-wrapper-81479a7e28f604ce aria-live=off><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate" data-swiper-slide-index=0 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(0px,0px,0px) role=group aria-label="1 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/13.png)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index=1 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(1360px,0px,0px) role=group aria-label="2 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/14.jpg)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index=2 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(2720px,0px,0px) role=group aria-label="3 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/15.jpg)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index=0 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(4080px,0px,0px) role=group aria-label="1 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/13.png)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-prev" data-swiper-slide-index=1 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(5440px,0px,0px) role=group aria-label="2 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/14.jpg)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-visible swiper-slide-active" data-swiper-slide-index=2 style=width:1360px;transition-duration:0ms;opacity:1;transform:translate3d(6800px,0px,0px) role=group aria-label="3 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in elementor-ken-burns--active" style=background-image:url(home/images/15.jpg)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index=0 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(8160px,0px,0px) role=group aria-label="1 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/13.png)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate swiper-slide-duplicate-prev" data-swiper-slide-index=1 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(9520px,0px,0px) role=group aria-label="2 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/14.jpg)></div></div><div class="elementor-background-slideshow__slide swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index=2 style=width:1360px;transition-duration:0ms;opacity:0;transform:translate3d(10880px,0px,0px) role=group aria-label="3 / 3"><div class="elementor-background-slideshow__slide__image elementor-ken-burns elementor-ken-burns--in" style=background-image:url(home/images/15.jpg)></div></div></div>
- 
- 
+ <body>
+<div id="fullCarousel" class="carousel">
+  <div class="slides">
+    <div class="slide"><img src="home/images/15.jpg" alt="Slide 15"></div>
+    <div class="slide"><img src="home/images/14.jpg" alt="Slide 14"></div>
+    <div class="slide"><img src="home/images/13.png" alt="Slide 13"></div>
+  </div>
+
+  <!-- Overlay heading -->
+  <!--
+  <div class="carousel-overlay">
+    <div class="headline">
+      <div class="draw">DRAW</div>
+      <div class="the-unseen">THE UNSEEN</div>
+    </div>
+  </div>
+  -->
+</div>
+
+<style>
+/* Custom fonts */
+@font-face {
+  font-family: 'DrawFont';
+  src: url('home/fonts/6.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'UnseenFont';
+  src: url('home/fonts/12.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Full-bleed carousel container */
+.carousel {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  background: #000;
+  height: clamp(640px, 60vh, 1080px);
+  min-height: 200px;
+  display: block;
+}
+
+/* Slides stacked for fade */
+.carousel .slides { position: relative; height: 100%; }
+.carousel .slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 900ms ease;
+  will-change: opacity; display: flex;
+}
+.carousel .slide.active { opacity: 1; z-index: 1; }
+.carousel img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: center 40%;
+  transform-origin: center; transition: transform 8000ms linear;
+  display: block;
+}
+.carousel .slide.active img { transform: scale(1.3); }
+.carousel .slide:not(.active) { pointer-events: none; }
+
+/* Overlay that centers text */
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none; /* allow clicks through overlay */
+}
+
+/* Headline layout */
+.headline {
+  text-align: center;
+  color: #fff;
+  line-height: 0.9;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  padding: 0 20px; /* small horizontal padding for small screens */
+}
+
+/* DRAW - larger, uses DrawFont */
+.headline .draw {
+  font-family: 'DrawFont', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 196px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin-bottom: 8px;
+}
+
+/* THE UNSEEN - smaller, uses UnseenFont */
+.headline .the-unseen {
+  font-family: 'UnseenFont', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 111px;
+  font-weight: 700;
+  letter-spacing: 0;
+  /* make fill transparent and add stroke */
+  color: transparent;
+  -webkit-text-stroke: 6px #ffffff; /* stroke width and color */
+  text-stroke: 6px #ffffff;         /* some browsers recognize this */
+  /* optional shadow for contrast */
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+}
+
+/* Responsive scaling for smaller screens */
+@media (max-width: 1200px) {
+  .headline .draw { font-size: 140px; }
+  .headline .the-unseen { font-size: 80px; }
+}
+@media (max-width: 760px) {
+  .headline .draw { font-size: 72px; }
+  .headline .the-unseen { font-size: 36px; }
+  .headline { padding: 0 12px; }
+}
+</style>
+
+<script>
+(function(){
+  const carousel = document.getElementById('fullCarousel');
+  const slides = Array.from(carousel.querySelectorAll('.slide'));
+  let index = 0;
+
+  const displayMs = 6200;
+  const fadeMs = 900;
+  const zoomDurationMs = 8000;
+  const targetScale = 1.3;
+
+  function activate(i, instant = false){
+    index = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => {
+      s.classList.toggle('active', idx === index);
+      const img = s.querySelector('img');
+      if (idx === index) {
+        img.style.transition = 'none';
+        img.style.transform = 'scale(1)';
+        void img.offsetWidth;
+        img.style.transition = `transform ${zoomDurationMs}ms linear`;
+        setTimeout(()=> img.style.transform = `scale(${targetScale})`, 20);
+      } else {
+        img.style.transition = `transform ${zoomDurationMs}ms linear`;
+        img.style.transform = 'scale(1)';
+      }
+    });
+    if (instant) {
+      slides.forEach(s => s.style.transition = 'none');
+      requestAnimationFrame(()=> slides.forEach(s => s.style.transition = `opacity ${fadeMs}ms ease`));
+    }
+  }
+
+  function next(){ activate(index + 1); }
+
+  // Infinite loop using recursive setTimeout
+  function startLoop(){
+    function loop(){
+      setTimeout(()=>{
+        next();
+        loop();
+      }, displayMs);
+    }
+    loop();
+  }
+
+  // Pause/resume on hover/touch
+  let paused = false;
+  carousel.addEventListener('mouseenter', ()=> paused = true);
+  carousel.addEventListener('mouseleave', ()=> paused = false);
+  carousel.addEventListener('touchstart', ()=> paused = true, {passive: true});
+  carousel.addEventListener('touchend', ()=> paused = false, {passive: true});
+
+  // Start carousel
+  activate(0, true);
+  startLoop();
+
+  // keyboard control (optional)
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'ArrowRight') activate(index + 1);
+    if (e.key === 'ArrowLeft') activate(index - 1);
+  });
+})();
+</script>
+</body>
+
  
  
  
